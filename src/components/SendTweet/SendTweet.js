@@ -9,7 +9,9 @@ import moment from "moment";
 // CSS
 import "./SendTweet.scss";
 
-const SendTweet = () => {
+const SendTweet = (props) => {
+  const { setToastProps, allTweets } = props;
+
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const openModal = () => {
@@ -27,13 +29,25 @@ const SendTweet = () => {
     const { name, tweet } = formValue;
     let allTweetsArray = [];
 
+    if (allTweets) {
+      allTweetsArray = allTweets;
+    }
+
     if (!name || !tweet) {
-      console.log("Todos los campos son obligatorios!");
+      setToastProps({
+        open: true,
+        text: "Todos los campos son obligatorios!",
+        severity: "warning",
+      });
     } else {
       formValue.time = moment();
       allTweetsArray.push(formValue);
       localStorage.setItem(TWEETS_STORAGE, JSON.stringify(allTweetsArray));
-      console.log("Tweet enviado y almacenado!");
+      setToastProps({
+        open: true,
+        text: "El tweet se a guardado correctamente!",
+        severity: "success",
+      });
       closeModal();
     }
 

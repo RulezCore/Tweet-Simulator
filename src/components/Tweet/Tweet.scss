@@ -1,0 +1,28 @@
+.tweet {
+  position: relative;
+  box-shadow: 4px 0px 6px rgba($color: #000000, $alpha: 0.3);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h5 {
+    margin: 0;
+  }
+
+  svg {
+    &:hover {
+      cursor: pointer;
+      fill: red;
+    }
+  }
+
+  &__date-add-tweet {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 10px;
+  }
+}
